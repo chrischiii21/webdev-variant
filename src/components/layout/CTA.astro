@@ -1,0 +1,173 @@
+---
+import Button from "../ui/Button.astro";
+import FormInput from "../ui/FormInput.astro";
+
+interface Props {
+    badge?: string;
+    title?: string;
+    description?: string;
+    features?: string[];
+    formTitle?: string;
+    formDescription?: string;
+    showForm?: boolean;
+}
+
+const {
+    badge = "LET'S TALK",
+    title = "Ready to Dominate Your Market?",
+    description = "Get a free strategy session with our team. We'll audit your current online presence and show you exactly how to outrank and outperform your competition.",
+    features = [
+        "Free competitive analysis",
+        "Custom growth roadmap",
+        "No long-term contracts"
+    ],
+    formTitle = "Get Your Free Audit",
+    formDescription = "Fill out the form and we'll reach out within 24 hours.",
+    showForm = true
+} = Astro.props;
+---
+
+<section class="cta-section relative py-20 overflow-hidden bg-[#161F30]">
+    <!-- Top Separator Line -->
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2F8EF8]/30 to-transparent"></div>
+    
+    <!-- Decorative gradients -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 opacity-20 pointer-events-none" style="background: radial-gradient(circle, #2F8EF8 0%, transparent 70%);"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 opacity-20 pointer-events-none" style="background: radial-gradient(circle, #94F9FD 0%, transparent 70%);"></div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <!-- Left Column - Content -->
+            <div class="cta-content">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 bg-gradient-to-r from-[#2F8EF8]/10 to-[#94F9FD]/10 px-4 py-2 rounded-full border border-[#2F8EF8]/20 mb-6">
+                    <div class="w-2 h-2 bg-[#2F8EF8] rounded-full animate-pulse"></div>
+                    <span class="text-eyebrow text-[#2F8EF8]">
+                        {badge}
+                    </span>
+                </div>
+
+                <!-- Title -->
+                <h2 class="h2 text-white mb-6">
+                    {title}
+                </h2>
+
+                <!-- Description -->
+                <p class="text-description text-gray-300 leading-relaxed mb-8">
+                    {description}
+                </p>
+
+                <!-- Features List -->
+                <ul class="space-y-4">
+                    {features.map((feature) => (
+                        <li class="flex items-center gap-3">
+                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-[#2F8EF8] to-[#94F9FD] flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <span class="text-nav text-white">
+                                {feature}
+                            </span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+            <!-- Right Column - Form or CTA -->
+            <div class="cta-form">
+                {showForm ? (
+                    <!-- Form Card -->
+                    <div class="glass-strong border-2 border-[#2F8EF8]/30 rounded-3xl p-8 lg:p-10">
+                        <h3 class="h3 text-white mb-3">
+                            {formTitle}
+                        </h3>
+                        <p class="text-gray-300 mb-6 text-base">
+                            {formDescription}
+                        </p>
+
+                        <form class="space-y-4" id="cta-form">
+                            <FormInput
+                                type="text"
+                                name="name"
+                                placeholder="Your Name"
+                                required={true}
+                            />
+                            <FormInput
+                                type="email"
+                                name="email"
+                                placeholder="Email Address"
+                                required={true}
+                            />
+                            <FormInput
+                                type="tel"
+                                name="phone"
+                                placeholder="Phone Number"
+                                required={true}
+                            />
+                            <FormInput
+                                type="textarea"
+                                name="message"
+                                placeholder="Tell us about your business..."
+                                rows={4}
+                            />
+                            <Button
+                                variant="primary"
+                                size="lg"
+                                fullWidth={true}
+                                ariaLabel="Send message"
+                            >
+                                Send Message
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </Button>
+                        </form>
+                    </div>
+                ) : (
+                    <!-- Simple CTA Card -->
+                    <div class="glass-strong border-2 border-[#2F8EF8]/30 rounded-3xl p-8 lg:p-10 text-center">
+                        <h3 class="h3 text-white mb-4">
+                            {formTitle}
+                        </h3>
+                        <p class="text-gray-300 mb-8 text-lg leading-relaxed">
+                            {formDescription}
+                        </p>
+                        <Button
+                            variant="primary"
+                            size="lg"
+                            href="/contact"
+                            ariaLabel="Get started now"
+                        >
+                            Get Started Now
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </Button>
+                    </div>
+                )}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Separator Line -->
+    <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#94F9FD]/30 to-transparent"></div>
+</section>
+
+<script>
+    // Form handling
+    const form = document.getElementById('cta-form');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            // Add your form submission logic here
+            console.log('Form submitted');
+        });
+    }
+</script>
+
+<style>
+    .cta-section {
+        font-family: 'Poppins', sans-serif;
+    }
+</style>

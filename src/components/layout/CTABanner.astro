@@ -1,0 +1,262 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+    title?: string;
+    description?: string;
+    primaryButtonText?: string;
+    primaryButtonHref?: string;
+    secondaryButtonText?: string;
+    secondaryButtonHref?: string;
+    showSecondaryButton?: boolean;
+    badge?: string;
+}
+
+const {
+    title = "Ready to Transform Your Business?",
+    description = "Join hundreds of contractors who have already boosted their online presence and revenue.",
+    primaryButtonText = "Get Started",
+    primaryButtonHref = "/contact",
+    secondaryButtonText = "View Our Work",
+    secondaryButtonHref = "/our-work",
+    showSecondaryButton = true,
+    badge = "LIMITED SPOTS AVAILABLE",
+} = Astro.props;
+---
+
+<section class="cta-banner relative py-20 overflow-hidden bg-[#161F30]">
+    <!-- Animated Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+        <div
+            class="absolute inset-0 animate-pulse-slow"
+            style="background-image: radial-gradient(circle at 2px 2px, #2F8EF8 1px, transparent 0); background-size: 40px 40px;"
+        >
+        </div>
+    </div>
+
+    <!-- Animated Decorative gradients -->
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+        <div
+            class="absolute top-1/2 left-0 w-[500px] h-[500px] -translate-y-1/2 opacity-30 animate-float"
+            style="background: radial-gradient(circle, #2F8EF8 0%, transparent 70%);"
+        >
+        </div>
+        <div
+            class="absolute top-1/2 right-0 w-[500px] h-[500px] -translate-y-1/2 opacity-30 animate-float-delayed"
+            style="background: radial-gradient(circle, #94F9FD 0%, transparent 70%);"
+        >
+        </div>
+    </div>
+
+    <!-- Animated Glow Border Effect -->
+    <div
+        class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2F8EF8]/50 to-transparent animate-glow-pulse"
+    >
+    </div>
+    <div
+        class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#94F9FD]/50 to-transparent animate-glow-pulse-delayed"
+    >
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
+        <div
+            class="glass-strong border-2 border-[#2F8EF8]/40 rounded-3xl p-8 lg:p-12 shadow-2xl hover:shadow-[0_0_60px_rgba(47,142,248,0.3)] transition-shadow duration-500"
+        >
+            <div
+                class="flex flex-col lg:flex-row items-center justify-between gap-8"
+            >
+                <!-- Content -->
+                <div class="text-center lg:text-left flex-1">
+                    <!-- Attention Badge -->
+                    <div
+                        class="inline-flex items-center gap-2 bg-gradient-to-r from-[#2F8EF8] to-[#94F9FD] px-4 py-2 rounded-full mb-6 animate-bounce-subtle"
+                    >
+                        <div class="w-2 h-2 bg-white rounded-full animate-ping">
+                        </div>
+                        <span
+                            class="text-xs font-bold uppercase tracking-widest text-white"
+                        >
+                            {badge}
+                        </span>
+                    </div>
+
+                    <h2
+                        class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight"
+                    >
+                        <span class="inline-block animate-fade-in-up"
+                            >{title}</span
+                        >
+                    </h2>
+                    <p
+                        class="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 animate-fade-in-up-delayed"
+                    >
+                        {description}
+                    </p>
+                </div>
+
+                <!-- Buttons -->
+                <div
+                    class="flex flex-col sm:flex-row items-center gap-4 shrink-0 animate-fade-in-up-more-delayed"
+                >
+                    <Button
+                        variant="primary"
+                        size="lg"
+                        href={primaryButtonHref}
+                        ariaLabel={primaryButtonText}
+                    >
+                        {primaryButtonText}
+                        <svg
+                            class="w-5 h-5 animate-arrow-bounce"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </Button>
+                    {
+                        showSecondaryButton && (
+                            <Button
+                                variant="secondary"
+                                size="lg"
+                                href={secondaryButtonHref}
+                                ariaLabel={secondaryButtonText}
+                            >
+                                {secondaryButtonText}
+                            </Button>
+                        )
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .cta-banner {
+        font-family: "Poppins", sans-serif;
+    }
+
+    /* Floating animation for gradient orbs */
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(-50%) translateX(0);
+        }
+        50% {
+            transform: translateY(-50%) translateX(20px);
+        }
+    }
+
+    @keyframes float-delayed {
+        0%,
+        100% {
+            transform: translateY(-50%) translateX(0);
+        }
+        50% {
+            transform: translateY(-50%) translateX(-20px);
+        }
+    }
+
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-float-delayed {
+        animation: float-delayed 6s ease-in-out infinite;
+        animation-delay: 1s;
+    }
+
+    /* Glow pulse for borders */
+    @keyframes glow-pulse {
+        0%,
+        100% {
+            opacity: 0.5;
+        }
+        50% {
+            opacity: 1;
+        }
+    }
+
+    .animate-glow-pulse {
+        animation: glow-pulse 3s ease-in-out infinite;
+    }
+
+    .animate-glow-pulse-delayed {
+        animation: glow-pulse 3s ease-in-out infinite;
+        animation-delay: 1.5s;
+    }
+
+    /* Subtle bounce for badge */
+    @keyframes bounce-subtle {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+    }
+
+    .animate-bounce-subtle {
+        animation: bounce-subtle 2s ease-in-out infinite;
+    }
+
+    /* Arrow bounce animation */
+    @keyframes arrow-bounce {
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+        50% {
+            transform: translateX(5px);
+        }
+    }
+
+    .animate-arrow-bounce {
+        animation: arrow-bounce 1.5s ease-in-out infinite;
+    }
+
+    /* Fade in up animations */
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out;
+    }
+
+    .animate-fade-in-up-delayed {
+        animation: fade-in-up 0.8s ease-out 0.2s both;
+    }
+
+    .animate-fade-in-up-more-delayed {
+        animation: fade-in-up 0.8s ease-out 0.4s both;
+    }
+
+    /* Slow pulse for background */
+    @keyframes pulse-slow {
+        0%,
+        100% {
+            opacity: 0.05;
+        }
+        50% {
+            opacity: 0.08;
+        }
+    }
+
+    .animate-pulse-slow {
+        animation: pulse-slow 4s ease-in-out infinite;
+    }
+</style>

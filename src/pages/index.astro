@@ -6,6 +6,9 @@ import Trades from "../components/layout/Trades.astro";
 import FeaturedTemplates from "../components/layout/FeaturedTemplates.astro";
 import Statistics from "../components/layout/Statistics.astro";
 import Reviews from "../components/layout/Reviews.astro";
+import FAQ from "../components/layout/FAQ.astro";
+import CTA from "../components/layout/CTA.astro";
+import CTABanner from "../components/layout/CTABanner.astro";
 ---
 
 <BaseLayout title="Home - Webdev Variant">
@@ -14,5 +17,15 @@ import Reviews from "../components/layout/Reviews.astro";
 	<Trades limit={6} />
 	<FeaturedTemplates />
 	<Statistics />
+	<CTABanner
+		title="Ready to Dominate Your Local Market?"
+		description="Join hundreds of contractors who have already transformed their online presence and revenue."
+		primaryButtonText="Get Your Free Audit"
+		primaryButtonHref="/contact"
+		secondaryButtonText="View Our Work"
+		secondaryButtonHref="/our-work"
+	/>
 	<Reviews />
+	<FAQ />
+	<CTA />
 </BaseLayout>

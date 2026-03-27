@@ -1,0 +1,307 @@
+---
+import Button from "../ui/Button.astro";
+
+interface FAQItem {
+    question: string;
+    answer: string;
+}
+
+interface Props {
+    title?: string;
+    subtitle?: string;
+    faqs?: FAQItem[];
+}
+
+const {
+    title = "Questions, Answered.",
+    subtitle = "FAQ",
+    faqs = [
+        {
+            question: "How quickly will I see results?",
+            answer: "Most clients see meaningful lead increases within the first 30-60 days. SEO takes 3-6 months to hit full velocity, but paid ads and landing pages often deliver results in week one."
+        },
+        {
+            question: "Do you work with all types of contractors?",
+            answer: "Yes! We specialize in working with contractors across all trades including plumbing, HVAC, electrical, roofing, and more. Our strategies are tailored to your specific industry."
+        },
+        {
+            question: "What makes you different from other agencies?",
+            answer: "We focus exclusively on contractors and understand the unique challenges of your industry. Our team combines marketing expertise with deep knowledge of the trades."
+        },
+        {
+            question: "Are there long-term contracts?",
+            answer: "We offer flexible month-to-month agreements. We believe in earning your business every month through results, not locking you into long-term contracts."
+        },
+        {
+            question: "What does the onboarding process look like?",
+            answer: "Our onboarding is streamlined and efficient. We'll conduct a discovery call, audit your current presence, develop a custom strategy, and launch within 2-3 weeks."
+        },
+        {
+            question: "How do you measure success?",
+            answer: "We track key metrics including lead volume, cost per lead, conversion rates, and ROI. You'll receive detailed monthly reports showing exactly how your investment is performing."
+        }
+    ]
+} = Astro.props;
+---
+
+<section class="faq-section relative py-20 overflow-hidden bg-[#161F30]">
+    <!-- Top Separator Line -->
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2F8EF8]/30 to-transparent"></div>
+    
+    <!-- Decorative gradients -->
+    <div class="absolute top-40 left-0 w-96 h-96 opacity-10 pointer-events-none" style="background: radial-gradient(circle, #2F8EF8 0%, transparent 70%);"></div>
+    <div class="absolute bottom-40 right-0 w-96 h-96 opacity-10 pointer-events-none" style="background: radial-gradient(circle, #94F9FD 0%, transparent 70%);"></div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <!-- Left Column - Questions List -->
+            <div class="faq-questions">
+                <!-- Section Badge -->
+                <div class="inline-flex items-center gap-2 bg-gradient-to-r from-[#2F8EF8]/10 to-[#94F9FD]/10 px-4 py-2 rounded-full border border-[#2F8EF8]/20 mb-6">
+                    <div class="w-2 h-2 bg-[#2F8EF8] rounded-full animate-pulse"></div>
+                    <span class="text-eyebrow text-[#2F8EF8]">
+                        {subtitle}
+                    </span>
+                </div>
+
+                <!-- Title -->
+                <h2 class="h2 text-white mb-10">
+                    {title}
+                </h2>
+
+                <!-- Questions List -->
+                <div class="space-y-3">
+                    {faqs.map((faq, index) => (
+                        <button
+                            class={`faq-question-btn w-full text-left px-5 py-4 rounded-xl border-2 transition-all duration-300 group ${index === 0 ? 'border-[#2F8EF8] bg-[#2F8EF8]/10' : 'border-[#2F8EF8]/20 hover:border-[#2F8EF8]'}`}
+                            data-faq-index={index}
+                            aria-label={`View answer to: ${faq.question}`}
+                        >
+                            <div class="flex items-center gap-4">
+                                <span class={`font-bold text-lg shrink-0 transition-colors ${index === 0 ? 'text-[#2F8EF8]' : 'text-[#94F9FD]'}`}>
+                                    {String(index + 1).padStart(2, '0')}
+                                </span>
+                                <span class={`text-nav transition-colors flex-1 ${index === 0 ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>
+                                    {faq.question}
+                                </span>
+                                <svg class={`w-5 h-5 text-[#2F8EF8] transition-opacity shrink-0 ${index === 0 ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            <!-- Right Column - Answer Display -->
+            <div class="faq-answers relative">
+                <!-- Static Card Container -->
+                <div class="glass border-2 border-[#2F8EF8]/30 rounded-3xl p-8 min-h-[380px] flex flex-col justify-between">
+                    <!-- Content Container with Transitions -->
+                    <div class="relative flex-1 overflow-hidden">
+                        {faqs.map((faq, index) => (
+                            <div
+                                class={`faq-answer-content absolute inset-0 transition-all duration-700 ease-in-out ${index === 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
+                                data-faq-answer={index}
+                            >
+                                <!-- Question Badge -->
+                                <div class="inline-flex items-center gap-3 mb-4">
+                                    <div class="w-9 h-9 rounded-full bg-gradient-to-r from-[#2F8EF8] to-[#94F9FD] flex items-center justify-center shrink-0">
+                                        <span class="text-white font-bold text-xs">
+                                            {String(index + 1).padStart(2, '0')}
+                                        </span>
+                                    </div>
+                                    <span class="text-eyebrow text-[#94F9FD] text-xs">
+                                        Question {String(index + 1).padStart(2, '0')}
+                                    </span>
+                                </div>
+
+                                <!-- Question Title -->
+                                <h3 class="text-2xl font-bold text-white mb-4 leading-tight">
+                                    {faq.question}
+                                </h3>
+
+                                <!-- Answer -->
+                                <p class="text-base text-gray-300 leading-relaxed">
+                                    {faq.answer}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+
+                    <!-- Navigation Dots - Always Visible -->
+                    <div class="flex items-center gap-2 pt-5 mt-5 border-t border-[#2F8EF8]/20">
+                        {faqs.map((_, dotIndex) => (
+                            <button
+                                class={`faq-dot h-2 rounded-full transition-all duration-300 ${dotIndex === 0 ? 'bg-[#2F8EF8] w-8' : 'bg-[#2F8EF8]/30 hover:bg-[#2F8EF8]/60 w-2'}`}
+                                data-faq-dot={dotIndex}
+                                aria-label={`Go to question ${dotIndex + 1}`}
+                            />
+                        ))}
+                    </div>
+                </div>
+
+                <!-- CTA Section Below Answer Card -->
+                <div class="mt-6">
+                    <div class="glass-strong border-2 border-[#94F9FD]/20 rounded-2xl p-8 text-center min-h-[160px] flex flex-col justify-center">
+                        <h4 class="text-lg font-bold text-white mb-2">
+                            Still have questions?
+                        </h4>
+                        <p class="text-gray-300 mb-5 text-sm leading-relaxed">
+                            Our team is here to help. Get in touch and we'll answer any questions you have.
+                        </p>
+                        <div class="flex justify-center">
+                            <Button
+                                variant="secondary"
+                                size="md"
+                                href="/contact"
+                                ariaLabel="Contact us for more information"
+                            >
+                                Contact Us
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Separator Line -->
+    <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#94F9FD]/30 to-transparent"></div>
+</section>
+
+<script>
+    // FAQ Interactive Functionality
+    function initFAQ() {
+        const questionBtns = document.querySelectorAll('.faq-question-btn');
+        const answerCards = document.querySelectorAll('.faq-answer-card');
+        const dots = document.querySelectorAll('.faq-dot');
+        let currentIndex = 0;
+
+        function showAnswer(index: number) {
+            // Get all content elements
+            const contentElements = document.querySelectorAll('.faq-answer-content');
+            
+            // Smooth transition with proper timing
+            contentElements.forEach((content, contentIndex) => {
+                if (contentIndex === index) {
+                    // Show new content - slide from bottom
+                    setTimeout(() => {
+                        content.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                        content.classList.add('opacity-100', 'translate-y-0');
+                    }, 150);
+                } else {
+                    // Hide other content - slide to top
+                    content.classList.remove('opacity-100', 'translate-y-0');
+                    content.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none');
+                }
+            });
+
+            // Update navigation dots
+            const dots = document.querySelectorAll('.faq-dot');
+            dots.forEach((dot, dotIndex) => {
+                if (dotIndex === index) {
+                    dot.classList.add('bg-[#2F8EF8]', 'w-8');
+                    dot.classList.remove('bg-[#2F8EF8]/30', 'w-2');
+                } else {
+                    dot.classList.remove('bg-[#2F8EF8]', 'w-8');
+                    dot.classList.add('bg-[#2F8EF8]/30', 'w-2');
+                }
+            });
+
+            // Update active question button styling
+            questionBtns.forEach((btn, btnIndex) => {
+                const numberSpan = btn.querySelector('span:first-child');
+                const textSpan = btn.querySelector('span:nth-child(2)');
+                const arrow = btn.querySelector('svg');
+                
+                if (btnIndex === index) {
+                    // Active state
+                    btn.classList.add('border-[#2F8EF8]', 'bg-[#2F8EF8]/10');
+                    btn.classList.remove('border-[#2F8EF8]/20');
+                    if (numberSpan) {
+                        numberSpan.classList.remove('text-[#94F9FD]');
+                        numberSpan.classList.add('text-[#2F8EF8]');
+                    }
+                    if (textSpan) {
+                        textSpan.classList.add('text-white');
+                        textSpan.classList.remove('text-gray-300');
+                    }
+                    if (arrow) {
+                        arrow.classList.add('opacity-100');
+                        arrow.classList.remove('opacity-0');
+                    }
+                } else {
+                    // Inactive state
+                    btn.classList.remove('border-[#2F8EF8]', 'bg-[#2F8EF8]/10');
+                    btn.classList.add('border-[#2F8EF8]/20');
+                    if (numberSpan) {
+                        numberSpan.classList.add('text-[#94F9FD]');
+                        numberSpan.classList.remove('text-[#2F8EF8]');
+                    }
+                    if (textSpan) {
+                        textSpan.classList.remove('text-white');
+                        textSpan.classList.add('text-gray-300');
+                    }
+                    if (arrow) {
+                        arrow.classList.remove('opacity-100');
+                        arrow.classList.add('opacity-0');
+                    }
+                }
+            });
+
+            currentIndex = index;
+        }
+
+        // Question button clicks
+        questionBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const index = parseInt(btn.getAttribute('data-faq-index') || '0');
+                showAnswer(index);
+            });
+        });
+
+        // Dot navigation clicks
+        dots.forEach((dot) => {
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.getAttribute('data-faq-dot') || '0');
+                showAnswer(index);
+            });
+        });
+
+        // Initialize first question as active
+        showAnswer(0);
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initFAQ);
+
+    // Re-initialize on Astro page transitions
+    document.addEventListener('astro:page-load', initFAQ);
+</script>
+
+<style>
+    .faq-question-btn {
+        background: rgba(27, 34, 44, 0.5);
+    }
+
+    .faq-question-btn:hover {
+        background: rgba(27, 34, 44, 0.8);
+    }
+
+    .faq-answer-content {
+        transition: 
+            opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+            transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Responsive Typography Adjustments */
+    @media (max-width: 768px) {
+        .faq-answers {
+            min-height: 400px;
+        }
+    }
+</style>
