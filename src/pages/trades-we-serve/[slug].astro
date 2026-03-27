@@ -4,6 +4,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Hero2 from "../../components/layout/Hero2.astro";
 import TemplateCard from "../../components/ui/TemplateCard.astro";
 import Button from "../../components/ui/Button.astro";
+import FAQ from "../../components/layout/FAQ.astro";
+import CTA from "../../components/layout/CTA.astro";
 
 export async function getStaticPaths() {
     const trades = await getCollection("trades");
@@ -52,17 +54,10 @@ const { name, tagline, hoverDescription, image } = trade.data;
             <div class="max-w-7xl mx-auto px-8 relative z-10">
                 <!-- Section Header -->
                 <div class="text-center mb-16">
-                    <div class="inline-flex items-center gap-2 bg-gradient-to-r from-[#2F8EF8]/10 to-[#94F9FD]/10 px-4 py-2 rounded-full border border-[#2F8EF8]/20 mb-6">
-                        <div class="w-2 h-2 bg-[#2F8EF8] rounded-full animate-pulse"></div>
-                        <span class="text-sm font-bold uppercase tracking-widest text-[#2F8EF8]" style="font-family: 'Poppins', sans-serif;">
-                            {templates && templates.length > 0 ? 'Available Templates' : 'Coming Soon'}
-                        </span>
-                    </div>
                     <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" style="font-family: 'Poppins', sans-serif;">
                         <span class="text-white">{name}</span>
                         <span class="text-[#2F8EF8]"> Templates</span>
                     </h2>
-                    <div class="w-24 h-1 bg-gradient-to-r from-[#94F9FD] to-[#2F8EF8] rounded-full mx-auto mb-6"></div>
                     <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed" style="font-family: 'Poppins', sans-serif;">
                         {templates && templates.length > 0 
                             ? `Choose from our professionally designed templates tailored for ${name.toLowerCase()}`
@@ -115,5 +110,6 @@ const { name, tagline, hoverDescription, image } = trade.data;
                 )}
             </div>
         </section>
-    </main>
+    <FAQ />
+    <CTA />
 </BaseLayout>
