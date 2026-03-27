@@ -66,10 +66,32 @@ const data = defineCollection({
   }),
 });
 
+const whyChooseUs = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/whyChooseUs' }),
+  schema: z.object({
+    title: z.string(),
+    icon: z.string(),
+    order: z.number().default(1),
+    featured: z.boolean().default(true),
+  }),
+});
+
+const ourOffering = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/ourOffering' }),
+  schema: z.object({
+    title: z.string(),
+    icon: z.string(),
+    order: z.number().default(1),
+    featured: z.boolean().default(true),
+  }),
+});
+
 export const collections = {
   trades,
   reviews,
   templates,
   legal,
   data,
+  whyChooseUs,
+  ourOffering,
 };
