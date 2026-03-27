@@ -1,37 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
-
-const tradesCollection = await getCollection("trades");
+import Trades from "../components/layout/Trades.astro";
 ---
 
 <BaseLayout
     title="Trades We Serve - Webdev Variant"
     description="Explore the professional trades and services we provide"
 >
-    <main class="min-h-screen py-16 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h1 class="text-4xl font-bold mb-8 text-center">Trades We Serve</h1>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {
-                    tradesCollection.map((trade) => (
-                        <div class="card p-6">
-                            <h2 class="text-2xl font-bold mb-2">
-                                {trade.data.title}
-                            </h2>
-                            <p class="text-gray-600">
-                                {trade.data.description}
-                            </p>
-                            <a
-                                href={trade.data.link}
-                                class="btn-primary mt-4 inline-block"
-                            >
-                                Learn More
-                            </a>
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
-    </main>
+    <Trades />
 </BaseLayout>

@@ -3,10 +3,20 @@ import { getCollection } from "astro:content";
 import Card from "../ui/Card.astro";
 import Button from "../ui/Button.astro";
 
+interface Props {
+    limit?: number;
+}
+
+const { limit } = Astro.props;
+
 const trades = await getCollection("trades");
 const sortedTrades = trades.sort(
     (a, b) => (a.data.order || 0) - (b.data.order || 0),
 );
+
+// Apply limit if specified
+const displayedTrades = limit ? sortedTrades.slice(0, limit) : sortedTrades;
+const hasMoreTrades = limit && sortedTrades.length > limit;
 ---
 
 <section class="relative py-20">
@@ -83,10 +93,10 @@ const sortedTrades = trades.sort(
 
         <!-- Cards Grid -->
         <div
-            class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-7xl mx-auto"
         >
             {
-                sortedTrades.map((trade) => (
+                displayedTrades.map((trade) => (
                     <Card
                         name={trade.data.name}
                         tagline={trade.data.tagline}
@@ -99,28 +109,33 @@ const sortedTrades = trades.sort(
             }
         </div>
 
-        <!-- View All Button -->
-        <div class="text-center">
-            <Button
-                variant="primary"
-                size="lg"
-                href="/trades-we-serve"
-                ariaLabel="View all trades we serve"
-            >
-                View All Trades
-                <svg
-                    class="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                </svg>
-            </Button>
-        </div>
+        <!-- View All Button - Show when limit is applied -->
+        {
+            limit && (
+                <div class="text-center">
+                    <Button
+                        variant="primary"
+                        size="lg"
+                        href="/trades-we-serve"
+                        ariaLabel="View all trades we serve"
+                    >
+                        View All Trades
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                        </svg>
+                    </Button>
+                </div>
+            )
+        }
     </div>
 </section>
