@@ -3,34 +3,16 @@ import Button from "../ui/Button.astro";
 import StatCard from "../ui/StatCard.astro";
 ---
 
-<section class="relative py-20 overflow-hidden bg-[#FAF8F5]">
-    <!-- Dynamic Background with Mesh Gradient -->
-    <div
-        class="absolute inset-0 bg-gradient-to-br from-[#FAF8F5] via-[#F5F3F0] to-[#FAF8F5]"
-    >
-    </div>
-    <div
-        class="absolute inset-0 bg-gradient-to-tr from-[#8FA0D8]/5 via-transparent to-[#8FA0D8]/5"
-    >
-    </div>
+<section class="relative py-20 overflow-hidden" style="background-color: #e8e6e1;">
 
-    <!-- Decorative gradients -->
-    <div
-        class="absolute top-20 left-0 w-96 h-96 opacity-5 pointer-events-none"
-        style="background: radial-gradient(circle, #8FA0D8 0%, transparent 70%);"
-    >
-    </div>
-    <div
-        class="absolute bottom-20 right-0 w-96 h-96 opacity-5 pointer-events-none"
-        style="background: radial-gradient(circle, #8FA0D8 0%, transparent 70%);"
-    >
-    </div>
+    <!-- Layer 1: Heavy dark grain — the dominant texture -->
+    <div class="grain-heavy"></div>
 
-    <!-- Decorative Section Divider - Top -->
-    <div
-        class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8FA0D8]/20 to-transparent"
-    >
-    </div>
+    <!-- Layer 2: Finer grain on top for depth -->
+    <div class="grain-fine"></div>
+
+    <!-- Layer 3: Diagonal light sweep / sheen -->
+    <div class="light-sweep"></div>
 
     <div class="max-w-7xl mx-auto px-8 relative z-10">
         <!-- Section Header -->
@@ -39,8 +21,7 @@ import StatCard from "../ui/StatCard.astro";
             <div
                 class="inline-flex items-center gap-2 bg-[#8FA0D8] px-4 py-2 rounded-full border border-[#8FA0D8] mb-6"
             >
-                <div class="w-2 h-2 bg-white rounded-full">
-                </div>
+                <div class="w-2 h-2 bg-white rounded-full"></div>
                 <span
                     class="text-sm font-bold uppercase tracking-widest text-white"
                     style="font-family: 'Roboto', sans-serif;"
@@ -189,6 +170,57 @@ import StatCard from "../ui/StatCard.astro";
 </section>
 
 <style>
+    /*
+     * Matching the reference image exactly:
+     * - Base: warm light gray #e8e6e1 (not white — the image has a warm gray tone)
+     * - Heavy dark grain speckles (multiply blend darkens them into the surface)
+     * - A second finer grain layer for texture depth
+     * - A soft diagonal white light sweep over everything
+     */
+
+    /* Layer 1: Coarse grain — produces the big visible dark speckles */
+    .grain-heavy {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 512px 512px;
+        opacity: 0.38;
+        mix-blend-mode: multiply;
+    }
+
+    /* Layer 2: Fine grain — adds dense speckle detail on top */
+    .grain-fine {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 256px 256px;
+        opacity: 0.22;
+        mix-blend-mode: multiply;
+    }
+
+    /* Layer 3: Diagonal light sweep — the bright glare cutting across */
+    .light-sweep {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        pointer-events: none;
+        background: linear-gradient(
+            128deg,
+            transparent 15%,
+            rgba(255, 255, 255, 0.0)  30%,
+            rgba(255, 255, 255, 0.72) 47%,
+            rgba(255, 255, 255, 0.58) 52%,
+            rgba(255, 255, 255, 0.0)  68%,
+            transparent 82%
+        );
+    }
+
     .stat-number {
         background: linear-gradient(135deg, #8FA0D8 0%, #0B0829 100%);
         -webkit-background-clip: text;
