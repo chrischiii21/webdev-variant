@@ -19,32 +19,32 @@ const icons: Record<string, string> = {
 
 const iconPath = icons[icon] || icons.clock;
 
-// Variant styles
+// Variant styles - Orange & Blue Palette
 const variantStyles = {
     light: {
-        card: "bg-white border-2 border-gray-200 hover:border-[#00C2FF] shadow-sm",
-        iconBg: "bg-gradient-to-br from-[#00C2FF]/20 to-[#00C2FF]/40",
-        iconColor: "text-[#00C2FF]",
+        card: "bg-white border-2 border-gray-200 hover:border-[#8FA0D8] shadow-sm",
+        iconBg: "bg-gradient-to-br from-[#8FA0D8]/20 to-[#8FA0D8]/40",
+        iconColor: "text-[#8FA0D8]",
         textColor: "text-gray-600",
-        shadowColor: "rgba(0, 194, 255, 0.1)",
-        hoverShadowColor: "rgba(0, 194, 255, 0.2)"
+        shadowColor: "rgba(143, 160, 216, 0.1)",
+        hoverShadowColor: "rgba(143, 160, 216, 0.2)",
     },
     dark: {
-        card: "bg-[#0D2B4E] border-2 border-[#0D2B4E] hover:border-[#00C2FF] shadow-sm",
-        iconBg: "bg-gradient-to-br from-[#00C2FF]/20 to-[#00C2FF]/40",
-        iconColor: "text-[#00C2FF]",
+        card: "bg-[#0B0829] border-2 border-[#0B0829] hover:border-[#8FA0D8] shadow-sm",
+        iconBg: "bg-gradient-to-br from-[#8FA0D8]/20 to-[#8FA0D8]/40",
+        iconColor: "text-[#8FA0D8]",
         textColor: "text-gray-300",
-        shadowColor: "rgba(41, 37, 36, 0.3)",
-        hoverShadowColor: "rgba(0, 194, 255, 0.2)"
+        shadowColor: "rgba(11, 8, 41, 0.3)",
+        hoverShadowColor: "rgba(143, 160, 216, 0.2)",
     },
     teal: {
-        card: "bg-[#00C2FF] border-2 border-[#00C2FF] hover:border-[#FFD100] shadow-sm",
+        card: "bg-[#8FA0D8] border-2 border-[#8FA0D8] hover:border-[#FF8400] shadow-sm",
         iconBg: "bg-white/20",
         iconColor: "text-white",
         textColor: "text-white/90",
-        shadowColor: "rgba(0, 194, 255, 0.3)",
-        hoverShadowColor: "rgba(0, 194, 255, 0.4)"
-    }
+        shadowColor: "rgba(143, 160, 216, 0.3)",
+        hoverShadowColor: "rgba(255, 132, 0, 0.4)",
+    },
 };
 
 const currentVariant = variantStyles[variant];
@@ -72,13 +72,13 @@ const currentVariant = variantStyles[variant];
     </div>
     <div
         class="stat-number text-3xl md:text-4xl font-bold mb-2"
-        style="font-family: 'Poppins', sans-serif;"
+        style="font-family: 'Roboto', sans-serif;"
     >
         {value}
     </div>
     <p
         class={`${currentVariant.textColor} text-xs`}
-        style="font-family: 'Poppins', sans-serif;"
+        style="font-family: 'Roboto', sans-serif;"
     >
         {label}
     </p>
@@ -90,34 +90,34 @@ const currentVariant = variantStyles[variant];
     }
 
     .stat-card[data-variant="light"] {
-        box-shadow: 0 4px 20px rgba(0, 194, 255, 0.1);
+        box-shadow: 0 4px 20px rgba(143, 160, 216, 0.1);
     }
 
     .stat-card[data-variant="light"]:hover {
         transform: translateY(-4px);
-        box-shadow: 0 8px 30px rgba(0, 194, 255, 0.2);
+        box-shadow: 0 8px 30px rgba(143, 160, 216, 0.2);
     }
 
     .stat-card[data-variant="dark"] {
-        box-shadow: 0 4px 20px rgba(41, 37, 36, 0.3);
+        box-shadow: 0 4px 20px rgba(11, 8, 41, 0.3);
     }
 
     .stat-card[data-variant="dark"]:hover {
         transform: translateY(-4px);
-        box-shadow: 0 8px 30px rgba(0, 194, 255, 0.2);
+        box-shadow: 0 8px 30px rgba(143, 160, 216, 0.2);
     }
 
     .stat-card[data-variant="teal"] {
-        box-shadow: 0 4px 20px rgba(0, 194, 255, 0.3);
+        box-shadow: 0 4px 20px rgba(143, 160, 216, 0.3);
     }
 
     .stat-card[data-variant="teal"]:hover {
         transform: translateY(-4px);
-        box-shadow: 0 8px 30px rgba(0, 194, 255, 0.4);
+        box-shadow: 0 8px 30px rgba(255, 132, 0, 0.4);
     }
 
     .stat-number {
-        background: linear-gradient(135deg, #00C2FF 0%, #0D2B4E 100%);
+        background: linear-gradient(135deg, #8fa0d8 0%, #0b0829 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
