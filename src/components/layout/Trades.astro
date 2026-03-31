@@ -14,45 +14,16 @@ const sortedTrades = trades.sort(
     (a, b) => (a.data.order || 0) - (b.data.order || 0),
 );
 
-// Apply limit if specified
 const displayedTrades = limit ? sortedTrades.slice(0, limit) : sortedTrades;
 const hasMoreTrades = limit && sortedTrades.length > limit;
 ---
 
-<section class="relative py-20 overflow-hidden bg-[#0A0F1E]">
-    <!-- Dynamic Background with Mesh Gradient -->
-    <div
-        class="absolute inset-0 bg-gradient-to-br from-[#0A0F1E] via-[#1F1F1F] to-[#0A0F1E]"
-    >
-    </div>
-    <div
-        class="absolute inset-0 bg-gradient-to-tr from-[#00C2FF]/5 via-transparent to-[#00C2FF]/5"
-    >
-    </div>
+<section class="relative py-20 overflow-hidden" style="background-color: #111111;">
 
-    <!-- Decorative Section Divider - Top -->
-    <div
-        class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00C2FF]/20 to-transparent"
-    >
-    </div>
-
-    <!-- Decorative gradients -->
-    <div
-        class="absolute -top-32 left-0 w-96 h-96 opacity-5 pointer-events-none"
-        style="background: radial-gradient(circle, #00C2FF 0%, transparent 70%);"
-    >
-    </div>
-    <div
-        class="absolute -bottom-32 right-0 w-96 h-96 opacity-5 pointer-events-none"
-        style="background: radial-gradient(circle, #00C2FF 0%, transparent 70%);"
-    >
-    </div>
-
-    <!-- Decorative Section Divider - Bottom -->
-    <div
-        class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00C2FF]/20 to-transparent"
-    >
-    </div>
+    <!-- Noise / Grain Texture Overlay -->
+    <!-- Two layers: one for base grain density, one for depth/variation -->
+    <div class="grain-base"></div>
+    <div class="grain-top"></div>
 
     <div class="max-w-7xl mx-auto px-8 relative z-10">
         <!-- Header -->
@@ -113,7 +84,7 @@ const hasMoreTrades = limit && sortedTrades.length > limit;
             }
         </div>
 
-        <!-- View All Button - Show when limit is applied -->
+        <!-- View All Button -->
         {
             limit && (
                 <div class="text-center">
@@ -143,3 +114,40 @@ const hasMoreTrades = limit && sortedTrades.length > limit;
         }
     </div>
 </section>
+
+<style>
+    /*
+     * Replicating the reference image:
+     * - Base color: ~#111111 (very dark, not pure black)
+     * - Fine, dense grain that reads as a tactile surface texture
+     * - Two stacked noise layers for organic depth
+     *
+     * Layer 1 (grain-base): coarser low-frequency noise for the "body"
+     * Layer 2 (grain-top):  finer high-frequency noise for the sparkle/detail
+     * Together they produce the layered grain seen in the reference.
+     */
+
+    .grain-base {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 512px 512px;
+        opacity: 0.42;
+        mix-blend-mode: screen;
+    }
+
+    .grain-top {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 256px 256px;
+        opacity: 0.18;
+        mix-blend-mode: screen;
+    }
+</style>
