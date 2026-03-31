@@ -1,6 +1,6 @@
 ---
 interface Props {
-    variant?: "primary" | "secondary" | "outline" | "urgency" | "card";
+    variant?: "primary" | "secondary" | "outline";
     size?: "sm" | "md" | "lg";
     href?: string;
     fullWidth?: boolean;
@@ -22,16 +22,21 @@ const {
 const baseClasses =
     "inline-flex items-center justify-center font-semibold transition-all duration-300 rounded-lg gap-2";
 
+// Theme-aware variant classes - Orange & Blue Palette
+// Optimized for both dark and light backgrounds
 const variantClasses = {
-    primary:
-        "bg-[#00C2FF] hover:bg-[#FFD100] text-[#0A0F1E] shadow-[0_4px_20px_rgba(0,194,255,0.4)] hover:shadow-[0_6px_30px_rgba(255,209,0,0.6)]",
-    secondary:
-        "border-2 border-[#00C2FF]/30 text-[#00C2FF] hover:bg-[#FFD100] hover:text-[#0A0F1E] hover:border-[#FFD100] backdrop-blur-sm shadow-[0_4px_20px_rgba(0,194,255,0.1)] hover:shadow-[0_6px_30px_rgba(255,209,0,0.2)]",
-    outline:
-        "border-2 border-[#00C2FF] text-[#00C2FF] hover:bg-[#00C2FF] hover:text-[#0A0F1E] shadow-[0_4px_20px_rgba(0,194,255,0.3)] hover:shadow-[0_6px_30px_rgba(0,194,255,0.6)]",
-    urgency:
-        "bg-[#FFD100] hover:bg-[#00C2FF] text-[#0A0F1E] font-bold shadow-[0_4px_20px_rgba(255,209,0,0.4)] hover:shadow-[0_6px_30px_rgba(0,194,255,0.6)]",
-    card: "border-2 border-[#00C2FF]/30 text-[#00C2FF] hover:bg-[#FFD100] hover:text-[#0A0F1E] hover:border-[#FFD100] backdrop-blur-sm shadow-[0_4px_20px_rgba(0,194,255,0.1)] hover:shadow-[0_6px_30px_rgba(255,209,0,0.2)]",
+    primary: {
+        dark: "bg-[#8FA0D8] hover:bg-[#F9DFC6] text-[#FFFFFF] hover:text-[#0B0829] shadow-[0_4px_20px_rgba(143,160,216,0.4)] hover:shadow-[0_6px_30px_rgba(249,223,198,0.8)]",
+        light: "bg-[#8FA0D8] hover:bg-[#0B0829] text-[#FFFFFF] hover:text-[#F9DFC6] shadow-[0_4px_20px_rgba(143,160,216,0.4)] hover:shadow-[0_6px_30px_rgba(11,8,41,0.8)]",
+    },
+    secondary: {
+        dark: "bg-[#FF8400] hover:bg-[#F9DFC6] text-[#FFFFFF] hover:text-[#0B0829] border-2 border-[#FF8400] hover:border-[#F9DFC6] shadow-[0_4px_20px_rgba(255,132,0,0.4)] hover:shadow-[0_6px_30px_rgba(249,223,198,0.8)]",
+        light: "bg-[#FF8400] hover:bg-[#0B0829] text-[#FFFFFF] hover:text-[#F9DFC6] border-2 border-[#FF8400] hover:border-[#0B0829] shadow-[0_4px_20px_rgba(255,132,0,0.4)] hover:shadow-[0_6px_30px_rgba(11,8,41,0.8)]",
+    },
+    outline: {
+        dark: "border-2 border-[#8FA0D8] text-[#8FA0D8] bg-transparent hover:bg-[#F9DFC6] hover:text-[#0B0829] hover:border-[#F9DFC6] shadow-[0_4px_20px_rgba(143,160,216,0.3)] hover:shadow-[0_6px_30px_rgba(249,223,198,0.8)]",
+        light: "border-2 border-[#8FA0D8] text-[#8FA0D8] bg-transparent hover:bg-[#0B0829] hover:text-[#F9DFC6] hover:border-[#0B0829] shadow-[0_4px_20px_rgba(143,160,216,0.3)] hover:shadow-[0_6px_30px_rgba(11,8,41,0.8)]",
+    },
 };
 
 const sizeClasses = {
@@ -42,7 +47,7 @@ const sizeClasses = {
 
 const widthClass = fullWidth ? "w-full" : "";
 
-const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${widthClass}`;
+const classes = `${baseClasses} ${variantClasses[variant][theme]} ${sizeClasses[size]} ${widthClass}`;
 
 const Element = href ? "a" : "button";
 ---
@@ -52,7 +57,7 @@ const Element = href ? "a" : "button";
     href={href}
     aria-label={ariaLabel}
     type={href ? undefined : "submit"}
-    style="font-family: 'Poppins', sans-serif;"
+    style="font-family: 'Roboto', sans-serif;"
 >
     <slot />
 </Element>

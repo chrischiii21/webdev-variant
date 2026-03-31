@@ -8,31 +8,42 @@ const stats = [
 ---
 
 <section
-  class="relative text-white py-20 overflow-hidden bg-[#00C2FF]"
-  style="font-family: 'Poppins', sans-serif;"
+  class="relative text-white py-20 overflow-hidden bg-[#0B0829]"
+  style="font-family: 'Roboto', sans-serif;"
 >
-  <!-- Subtle Section Background with Glass Effect -->
-  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#00C2FF]/10 to-transparent"></div>
-  <div class="absolute inset-0 bg-gradient-to-r from-[#00C2FF]/5 via-transparent to-[#00C2FF]/5"></div>
-
-  <!-- Animated Background Orbs -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div
-      class="absolute top-1/4 -left-20 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-float"
-    >
-    </div>
-    <div
-      class="absolute bottom-1/4 -right-20 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-float-delayed"
-    >
-    </div>
+  <!-- Dynamic Background with Mesh Gradient -->
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-[#0B0829] via-[#1F1F1F] to-[#0B0829]"
+  >
+  </div>
+  <div
+    class="absolute inset-0 bg-gradient-to-tr from-[#8FA0D8]/5 via-transparent to-[#8FA0D8]/5"
+  >
   </div>
 
   <!-- Decorative Section Divider - Top -->
   <div
-    class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+    class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8FA0D8]/20 to-transparent"
   >
   </div>
-  <div class="absolute top-0 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-transparent via-white/30 to-transparent blur-sm"></div>
+
+  <!-- Decorative gradients -->
+  <div
+    class="absolute -top-32 left-0 w-96 h-96 opacity-5 pointer-events-none"
+    style="background: radial-gradient(circle, #8FA0D8 0%, transparent 70%);"
+  >
+  </div>
+  <div
+    class="absolute -bottom-32 right-0 w-96 h-96 opacity-5 pointer-events-none"
+    style="background: radial-gradient(circle, #8FA0D8 0%, transparent 70%);"
+  >
+  </div>
+
+  <!-- Decorative Section Divider - Bottom -->
+  <div
+    class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8FA0D8]/20 to-transparent"
+  >
+  </div>
 
   <div class="max-w-7xl mx-auto px-8 relative z-10">
     <!-- Diagonal Split Layout -->
@@ -41,11 +52,10 @@ const stats = [
       <div class="lg:col-span-5 space-y-6">
         <!-- Header Badge -->
         <div
-          class="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full border border-white/30 mb-2"
+          class="inline-flex items-center gap-2 bg-gradient-to-r from-[#FF8400] to-[#ff9933] px-4 py-2 rounded-full border border-[#FF8400]/50 mb-2 shadow-[0_0_20px_rgba(255,132,0,0.3)]"
         >
           <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-          <span
-            class="text-xs font-bold uppercase tracking-widest text-white"
+          <span class="text-xs font-bold uppercase tracking-widest text-white"
             >By The Numbers</span
           >
         </div>
@@ -54,9 +64,15 @@ const stats = [
         <h2
           class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8"
         >
-          <span class="text-white">Proven Track</span><br />
-          <span class="text-white">Record of</span>
-          <span class="text-white">Excellence.</span>
+          <span
+            class="bg-gradient-to-r from-white via-[#F9DFC6] to-white bg-clip-text text-transparent"
+            >Proven Track</span
+          ><br />
+          <span
+            class="bg-gradient-to-r from-white via-[#F9DFC6] to-white bg-clip-text text-transparent"
+            >Record of</span
+          >
+          <span class="text-[#FF8400]"> Excellence.</span>
         </h2>
 
         <!-- Diagonal Stat Cards -->
@@ -64,7 +80,7 @@ const stats = [
           {
             stats.slice(0, 2).map((stat, index) => (
               <div
-                class="stat-card-diagonal group bg-white/10 border-2 border-white/20 rounded-3xl p-6 hover:border-white/40 transition-all duration-500 transform hover:-translate-y-2 backdrop-blur-sm"
+                class="stat-card-diagonal group bg-gradient-to-br from-[#0B0829]/80 to-[#1a1540]/80 border-2 border-[#8FA0D8]/30 rounded-3xl p-6 hover:border-[#FF8400]/60 hover:shadow-[0_0_30px_rgba(255,132,0,0.3)] transition-all duration-500 transform hover:-translate-y-2 backdrop-blur-sm"
                 style={`transform: translateX(${index * 20}px);`}
               >
                 <div class="flex items-center justify-between">
@@ -76,7 +92,7 @@ const stats = [
                       {stat.label}
                     </p>
                   </div>
-                  <div class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 shrink-0">
+                  <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#FF8400]/30 to-[#8FA0D8]/30 flex items-center justify-center group-hover:rotate-12 group-hover:scale-110 border border-[#8FA0D8]/20 transition-transform duration-500 shrink-0">
                     {stat.icon === "briefcase" && (
                       <svg
                         class="w-7 h-7 text-white"
@@ -139,11 +155,11 @@ const stats = [
           {
             stats.slice(2, 4).map((stat, index) => (
               <div
-                class="stat-card-diagonal group bg-white/10 border-2 border-white/20 rounded-3xl p-6 hover:border-white/40 transition-all duration-500 transform hover:-translate-y-2 backdrop-blur-sm"
+                class="stat-card-diagonal group bg-gradient-to-br from-[#0B0829]/80 to-[#1a1540]/80 border-2 border-[#8FA0D8]/30 rounded-3xl p-6 hover:border-[#FF8400]/60 hover:shadow-[0_0_30px_rgba(255,132,0,0.3)] transition-all duration-500 transform hover:-translate-y-2 backdrop-blur-sm"
                 style={`transform: translateX(-${index * 20}px);`}
               >
                 <div class="flex items-center justify-between">
-                  <div class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 shrink-0">
+                  <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#FF8400]/30 to-[#8FA0D8]/30 flex items-center justify-center group-hover:rotate-12 group-hover:scale-110 border border-[#8FA0D8]/20 transition-transform duration-500 shrink-0">
                     {stat.icon === "clock" && (
                       <svg
                         class="w-7 h-7 text-white"
@@ -191,14 +207,14 @@ const stats = [
 
         <!-- CTA Card -->
         <div
-          class="mt-6 bg-white/10 border-2 border-white/20 rounded-3xl p-6 backdrop-blur-sm"
+          class="mt-6 bg-gradient-to-br from-[#0B0829]/80 to-[#1a1540]/80 border-2 border-[#8FA0D8]/30 rounded-3xl p-6 backdrop-blur-sm"
         >
           <p class="text-white text-base mb-4 leading-relaxed">
             Ready to see what we can achieve together?
           </p>
           <a
             href="/contact"
-            class="inline-flex items-center gap-3 bg-white text-[#00C2FF] hover:bg-white/90 px-6 py-3 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-xl group"
+            class="inline-flex items-center gap-3 bg-[#FF8400] text-white hover:bg-[#F9DFC6] hover:text-[#0B0829] px-6 py-3 rounded-full font-bold transition-all duration-300 hover:scale-105 hover:shadow-xl group"
           >
             <span>Start Your Project</span>
             <svg
@@ -221,7 +237,7 @@ const stats = [
     <!-- Bottom Floating Stats Bar -->
     <div class="mt-16">
       <div
-        class="bg-white/10 border-2 border-white/20 rounded-full p-5 flex flex-wrap justify-around items-center gap-6 hover:border-white/40 transition-all duration-500 backdrop-blur-sm"
+        class="bg-gradient-to-br from-[#0B0829]/80 to-[#1a1540]/80 border-2 border-[#8FA0D8]/30 rounded-full p-5 flex flex-wrap justify-around items-center gap-6 hover:border-[#FF8400]/60 hover:shadow-[0_0_30px_rgba(255,132,0,0.3)] transition-all duration-500 backdrop-blur-sm"
       >
         <div class="flex items-center gap-3">
           <div
@@ -241,12 +257,12 @@ const stats = [
             </svg>
           </div>
           <div>
-            <p class="text-[#38B0F8] font-bold text-base">Fast Delivery</p>
-            <p class="text-gray-600 text-xs">On-Time Completion</p>
+            <p class="text-[#FF8400] font-bold text-base">Fast Delivery</p>
+            <p class="text-[#F9DFC6]/70 text-xs">On-Time Completion</p>
           </div>
         </div>
 
-        <div class="hidden md:block w-px h-10 bg-[#0D2B4E]/20"></div>
+        <div class="hidden md:block w-px h-10 bg-[#8FA0D8]/20"></div>
 
         <div class="flex items-center gap-3">
           <div
@@ -267,12 +283,12 @@ const stats = [
             </svg>
           </div>
           <div>
-            <p class="text-[#38B0F8] font-bold text-base">Quality Assured</p>
-            <p class="text-gray-600 text-xs">Premium Standards</p>
+            <p class="text-[#FF8400] font-bold text-base">Quality Assured</p>
+            <p class="text-[#F9DFC6]/70 text-xs">Premium Standards</p>
           </div>
         </div>
 
-        <div class="hidden md:block w-px h-10 bg-[#0D2B4E]/20"></div>
+        <div class="hidden md:block w-px h-10 bg-[#8FA0D8]/20"></div>
 
         <div class="flex items-center gap-3">
           <div
@@ -293,66 +309,32 @@ const stats = [
             </svg>
           </div>
           <div>
-            <p class="text-[#38B0F8] font-bold text-base">24/7 Support</p>
-            <p class="text-gray-600 text-xs">Always Available</p>
+            <p class="text-[#FF8400] font-bold text-base">24/7 Support</p>
+            <p class="text-[#F9DFC6]/70 text-xs">Always Available</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Decorative Section Divider - Bottom -->
-  <div
-    class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
-  >
-  </div>
-  <div class="absolute bottom-0 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-transparent via-white/30 to-transparent blur-sm"></div>
 </section>
 
 <style>
   .stat-card-diagonal {
-    box-shadow: 0 4px 20px rgba(0, 194, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(143, 160, 216, 0.2);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .stat-card-diagonal:hover {
-    box-shadow: 0 12px 40px rgba(0, 194, 255, 0.4);
+    box-shadow:
+      0 12px 40px rgba(255, 132, 0, 0.4),
+      0 0 30px rgba(143, 160, 216, 0.3);
   }
 
   .stat-number {
-    background: white;
+    background: linear-gradient(135deg, #f9dfc6 0%, white 50%, #ff8400 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-  }
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0) scale(1);
-    }
-    50% {
-      transform: translateY(-20px) scale(1.05);
-    }
-  }
-
-  @keyframes float-delayed {
-    0%,
-    100% {
-      transform: translateY(0) scale(1);
-    }
-    50% {
-      transform: translateY(20px) scale(1.05);
-    }
-  }
-
-  .animate-float {
-    animation: float 8s ease-in-out infinite;
-  }
-
-  .animate-float-delayed {
-    animation: float-delayed 8s ease-in-out infinite;
-    animation-delay: 2s;
   }
 
   /* Responsive adjustments */

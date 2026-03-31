@@ -17,7 +17,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="hero2-section relative overflow-hidden bg-[#0A0F1E]">
+<section class="hero2-section relative overflow-hidden bg-[#0B0829]">
     <!-- Background Image or Gradient -->
     <div class="absolute inset-0">
         {image ? (
@@ -28,25 +28,25 @@ const {
                     class="w-full h-full object-cover opacity-30"
                 />
                 <!-- Dark overlay with Neo-Tech gradient -->
-                <div class="absolute inset-0 bg-gradient-to-r from-[#0A0F1E]/95 via-[#0A0F1E]/85 to-[#0A0F1E]/75"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#0B0829]/95 via-[#0B0829]/85 to-[#0B0829]/75"></div>
             </>
         ) : (
             <>
                 <!-- Neo-Tech Gradient Background -->
-                <div class="absolute inset-0 bg-gradient-to-br from-[#0A0F1E] via-[#1a2332] to-[#0f1419]"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-[#0B0829] via-[#1a2332] to-[#0f1419]"></div>
                 
                 <!-- Animated Decorative Orbs -->
-                <div class="absolute top-0 right-1/4 w-96 h-96 bg-[#00C2FF] rounded-full opacity-15 blur-3xl animate-pulse-slow"></div>
-                <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-[#00C2FF] rounded-full opacity-10 blur-3xl animate-pulse-slow" style="animation-delay: 1.5s;"></div>
+                <div class="absolute top-0 right-1/4 w-96 h-96 bg-[#8FA0D8] rounded-full opacity-15 blur-3xl animate-pulse-slow"></div>
+                <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-[#8FA0D8] rounded-full opacity-10 blur-3xl animate-pulse-slow" style="animation-delay: 1.5s;"></div>
                 
                 <!-- Diagonal Pattern Overlay -->
-                <div class="absolute inset-0 opacity-5" style="background-image: repeating-linear-gradient(45deg, #00C2FF 0px, #00C2FF 1px, transparent 1px, transparent 20px);"></div>
+                <div class="absolute inset-0 opacity-5" style="background-image: repeating-linear-gradient(45deg, #8FA0D8 0px, #8FA0D8 1px, transparent 1px, transparent 20px);"></div>
             </>
         )}
     </div>
 
     <!-- Top Separator Line -->
-    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00C2FF]/30 to-transparent"></div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8FA0D8]/30 to-transparent"></div>
 
     <!-- Content Container -->
     <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-12 md:py-14">
@@ -61,13 +61,13 @@ const {
 
             <!-- Right Side - Breadcrumb -->
             {showBreadcrumb && (
-                <div class="flex items-center gap-3 text-sm bg-[#0D2B4E]/50 backdrop-blur-sm px-5 py-2.5 rounded-full border border-[#00C2FF]/20">
+                <div class="flex items-center gap-3 text-sm bg-[#0B0829]/50 backdrop-blur-sm px-5 py-2.5 rounded-full border border-[#8FA0D8]/20">
                     {breadcrumbItems.map((item, index) => (
                         <>
                             {item.href ? (
                                 <a 
                                     href={item.href}
-                                    class="text-[#00C2FF] hover:text-white font-semibold uppercase tracking-wider transition-colors text-xs"
+                                    class="text-[#8FA0D8] hover:text-white font-semibold uppercase tracking-wider transition-colors text-xs"
                                 >
                                     {item.label}
                                 </a>
@@ -77,7 +77,7 @@ const {
                                 </span>
                             )}
                             {index < breadcrumbItems.length - 1 && (
-                                <svg class="w-4 h-4 text-[#00C2FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 text-[#8FA0D8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                 </svg>
                             )}
@@ -89,22 +89,22 @@ const {
     </div>
 
     <!-- Bottom Separator Line -->
-    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00C2FF]/30 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8FA0D8]/30 to-transparent"></div>
 </section>
 
 <style>
     .hero2-section {
         padding-top: 80px; /* Account for fixed navbar */
         min-height: 200px;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Roboto', sans-serif;
     }
 
     .hero2-title {
-        background: linear-gradient(135deg, #FFFFFF 0%, #00C2FF 50%, #00C2FF 100%);
+        background: linear-gradient(135deg, #FFFFFF 0%, #8FA0D8 50%, #8FA0D8 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        text-shadow: 0 0 40px rgba(0, 194, 255, 0.2);
+        text-shadow: 0 0 40px rgba(143, 160, 216, 0.2);
     }
 
     @keyframes pulse-slow {
